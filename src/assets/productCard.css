@@ -1,0 +1,299 @@
+/* Import Google Fonts for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.product-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.05),
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.01);
+  height: 100%;
+  cursor: pointer;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-12px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 8px 15px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-image-container {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.product-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 70%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  z-index: 1;
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: center;
+  z-index: 2;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.08);
+}
+
+.product-info {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-grow: 1;
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 3;
+}
+
+.product-info::before {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.03),
+    rgba(0, 0, 0, 0.06),
+    rgba(0, 0, 0, 0.03)
+  );
+}
+
+.product-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #ff1493;
+  opacity: 0.7;
+  margin-bottom: -0.3rem;
+  transform: translateZ(5px);
+}
+
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #2d3436;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transform: translateZ(10px);
+}
+
+.product-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ff1493;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateZ(15px);
+}
+
+.price-currency {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #636e72;
+  transform: translateZ(5px);
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  color: #fdcb6e;
+  font-size: 0.95rem;
+  position: relative;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+.rating-count {
+  font-size: 0.85rem;
+  color: #636e72;
+  opacity: 0.8;
+}
+
+.add-to-cart-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 0.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(20px);
+  box-shadow: 
+    0 6px 15px rgba(255, 105, 180, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 105, 180, 0.1) inset;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.add-to-cart-btn:hover {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  transform: translateY(-3px) translateZ(20px);
+  box-shadow: 
+    0 12px 25px rgba(255, 105, 180, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 105, 180, 0.15) inset;
+}
+
+.add-to-cart-btn:hover::before {
+  left: 100%;
+}
+
+.add-to-cart-btn:active {
+  transform: translateY(-1px) translateZ(20px);
+  box-shadow: 
+    0 8px 15px rgba(255, 105, 180, 0.2),
+    0 3px 5px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 105, 180, 0.05) inset;
+}
+
+.add-to-cart-btn.added {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  box-shadow: 
+    0 6px 15px rgba(0, 184, 148, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 184, 148, 0.1) inset;
+}
+
+.add-to-cart-btn.added:hover {
+  background: linear-gradient(135deg, #00cec9, #00b894);
+  box-shadow: 
+    0 12px 25px rgba(0, 184, 148, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 184, 148, 0.15) inset;
+}
+
+.cart-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.add-to-cart-btn:hover .cart-btn-icon {
+  transform: translateX(-3px) scale(1.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .product-info {
+    padding: 1rem;
+  }
+  
+  .product-title {
+    font-size: 1rem;
+  }
+  
+  .product-price {
+    font-size: 1.2rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+} 

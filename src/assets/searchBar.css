@@ -1,0 +1,118 @@
+.search-bar {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.search-bar form {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.search-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: var(--bg-gradient);
+  opacity: 0.05;
+  filter: blur(40px);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  border-radius: 30px 0 0 30px;
+  font-size: 1rem;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+}
+
+.search-button {
+  background: var(--bg-gradient);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.search-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.search-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.search-button:hover::before {
+  transform: translateX(0);
+}
+
+.search-icon {
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    margin-bottom: 2rem;
+  }
+  
+  .search-bar form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .search-input,
+  .search-button {
+    border-radius: 30px;
+    width: 100%;
+  }
+  
+  .search-input {
+    padding: 0.85rem 1.25rem;
+  }
+  
+  .search-button {
+    padding: 0.85rem 1.25rem;
+  }
+} 
