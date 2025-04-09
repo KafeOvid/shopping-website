@@ -66,8 +66,8 @@ npm run dev
 ### Login Credentials
 
 For testing purposes, use the following credentials:
-- Username: `mor_2314`
-- Password: `83r5^_`
+- Username: `admin`
+- Password: `admin`
 
 ## Project Structure
 

@@ -11,13 +11,15 @@ import Login from './pages/Login';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <CustomCursor />
           <div className="app">
             <Header />
             <div className="main-content">
@@ -42,9 +44,9 @@ function App() {
             </div>
             <Footer />
           </div>
-        </CartProvider>
-      </AuthProvider>
-    </Router>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

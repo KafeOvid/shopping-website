@@ -1,0 +1,248 @@
+* {
+  cursor: none !important;
+}
+
+:root {
+  --cursor-color: #00f7ff;
+  --cursor-outline: #ff00d4;
+  --cursor-size: 12px;
+}
+
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.cursor-inner {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: var(--cursor-color);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--cursor-color),
+              0 0 30px var(--cursor-color),
+              0 0 45px var(--cursor-color);
+  transition: transform 0.1s ease;
+  animation: cursorFloat 2s ease-in-out infinite;
+}
+
+.cursor-outer {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--cursor-outline);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--cursor-outline);
+  transition: all 0.2s ease;
+  animation: pulseRing 2s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+/* Hover Animation */
+.cursor.cursor-hover .cursor-inner {
+  transform: scale(1.5);
+  background: var(--cursor-outline);
+  box-shadow: 0 0 15px var(--cursor-outline),
+              0 0 30px var(--cursor-outline),
+              0 0 45px var(--cursor-outline);
+  animation: cursorPulse 0.6s ease-in-out infinite alternate;
+}
+
+.cursor.cursor-hover .cursor-outer {
+  animation: ringExpand 0.6s ease-out forwards;
+  border-color: var(--cursor-color);
+  box-shadow: 0 0 15px var(--cursor-color);
+}
+
+/* Click Animation */
+.cursor.cursor-click .cursor-inner {
+  transform: scale(0.8);
+  animation: clickPulse 0.4s ease-out;
+}
+
+.cursor.cursor-click .cursor-outer {
+  transform: scale(1.4);
+  opacity: 0;
+  animation: clickRing 0.4s ease-out;
+}
+
+@keyframes cursorFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.1);
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+@keyframes cursorPulse {
+  0% {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--cursor-outline),
+                0 0 30px var(--cursor-outline);
+  }
+  100% {
+    transform: scale(1.5);
+    box-shadow: 0 0 20px var(--cursor-outline),
+                0 0 40px var(--cursor-outline),
+                0 0 60px var(--cursor-outline);
+  }
+}
+
+@keyframes ringExpand {
+  0% {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: -20px;
+    opacity: 1;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: -30px;
+    opacity: 0.5;
+  }
+}
+
+@keyframes clickPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes clickRing {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Moving Effect */
+.cursor.cursor-moving .cursor-inner {
+  animation: movingGlow 0.5s ease infinite alternate;
+}
+
+.cursor.cursor-moving .cursor-outer {
+  opacity: 0.5;
+}
+
+@keyframes movingGlow {
+  0% {
+    box-shadow: 0 0 15px var(--cursor-color),
+                0 0 30px var(--cursor-color);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--cursor-color),
+                0 0 40px var(--cursor-color),
+                0 0 60px var(--cursor-color);
+  }
+}
+
+/* Neon Trail Effect */
+.cursor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--cursor-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  filter: blur(4px);
+  animation: trailFade 0.5s ease-out;
+}
+
+@keyframes trailFade {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Interactive Elements Highlight */
+.cursor.cursor-hover::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(
+    circle at center,
+    var(--cursor-color) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(8px);
+  animation: highlightPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes highlightPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cursor-color: #00f7ff;
+    --cursor-outline: #ff00d4;
+  }
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --cursor-color: #00f7ff;
+    --cursor-outline: #ff00d4;
+  }
+  .cursor {
+    mix-blend-mode: exclusion;
+  }
+} 
